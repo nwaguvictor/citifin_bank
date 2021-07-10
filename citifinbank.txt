@@ -1,0 +1,44 @@
+CITIFIN BANK
+
+	1. Login form should be displayed on the index.html page
+	2. The navigation bar should contain only the following [Home, About Us, Contacts, Register]
+	3. Chat bot should be included at the bottom right of the webpages
+	4. Google Language Plugin should be activated
+
+	REGISTER
+		The registration form should contain [email, password], other information should be complted
+		in the dashboard area after sucessful login/register. the following information should be completed
+		in the dashbbaord to enable account assigning. [Fullname, DOB, Address, Contact info, identification number or SSN,
+		government valid ID (front & back), Passport, Apply]
+
+		NB: No operation should be carried out without the necessary detials been completed.
+
+	USER DASHBOARD
+		the following action will be carried out upon successful login of the user.
+		*The navigation bar should contain only the logo/name of bank on the left and logout on the top right.
+		[
+		  Should be available only when application is accepted/approved by the admin.
+		  [
+		   1. Dashboard { displays the general information of the user's account [user account photo, balace,Exchange Rate] }
+		   2. Deposit Money {form field required[amount, currency, proof of payment(photo)], text/opinion, submit button}
+		   3. Request Withdrawal {form field for beneficiary account [name, account number, bank name, bank address, amount, currency, apply btn]}
+		   4. Transfer Money {form field for transfer within users in the system [amount, currency, receiver account number, send btn]}
+		   5. Transaction Log {transaction history should be in tabular form and organized with dataTable [date of transaction, description, Status,
+		     amount]}
+		  ]
+		]
+
+	ADMIN DASHBOARD
+		the following action will be carried out upon successful login of the admin.
+		*The navigation bar should contain only the logo/name of bank on the left and logout on the top right.
+		[
+		  1. Dashboard {displays general info of users [users, Withdrawal Request, Deposit Alert
+				currency value[euro, dollar, yern, yuan]]}
+		  2. Users displayed in tabular form with dataTable {fullname, account number, amount, deactivate btn, activate btn}
+		  3. Withdrawal Request  {form field for beneficiary account [name, account number, bank name, bank address, amount, currency, approve btn,
+		     			decline btn]}
+		  4. Deposit Alert {displayed in tabular form[account number, amount, currency, proof of payment{downloadable btn}, confirm payment btn,
+		     		    decline btn]}
+		  5. Transaction history {transaction history should be in tabular form and organized with dataTable[account name, account number,
+		     			  download btn]}
+		]
