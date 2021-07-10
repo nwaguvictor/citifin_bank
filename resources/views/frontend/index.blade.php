@@ -15,7 +15,7 @@
                                 <h2 class="title2">Move money in easy secure steps</h2>
                                 <p>Fast and easy you want to be more secure send and recives money sort time</p>
                                 <div class="layer-1-3">
-                                    <a href="{{ route('frontend.register') }}" class="ready-btn" >Get started</a>
+                                    <a href="{{ route('register') }}" class="ready-btn" >Get started</a>
                                 </div>
                             </div>
                             <!-- End slide content -->
@@ -25,23 +25,22 @@
                            <div class="money-send">
                                 <div class="calculator-inner">
                                     <div class="single-cal">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('login') }}" method="POST">
                                             @csrf
 
                                             <label for="email_address">Enter Email address</label>
-                                            <input type="text" name="email_address" class="form-input" placeholder="example@gmail.com" style="width: 100%; color: #333;">
+                                            <input type="text" name="email_address" class="form-input" placeholder="example@gmail.com" style="width: 100%; color: #333;" required>
                                             <div class="inner-form">
                                             </div>
                                             <label for="password">Enter Password</label>
-                                            <input type="password" name="password" class="form-input" placeholder="xxxxxxxx" style="width: 100%; color: #333;">
+                                            <input type="password" name="password" class="form-input" placeholder="xxxxxxxx" style="width: 100%; color: #333;" required>
                                             <div class="inner-form">
                                             </div>
                                             <button type="submit" class="cale-btn">Login</button>
                                         </form>
                                         <div class="terms-text">
-                                            <a href="">Forgot Password</a> | 
-                                            <a href="{{ route('frontend.register') }}">Register</a>
-                                            {{-- <p>Don't have an account? <a href="{{ route('frontend.register') }}">Register here</a></p> --}}
+                                            <a href="">Forgot Password</a> |
+                                            <a href="{{ route('register') }}">Register</a>
                                         </div>
                                 </div>
                            </div>
@@ -319,7 +318,7 @@
                 </div>
             </div>
             <!-- End single column-->
-        </div> 
+        </div>
     </div>
 </div>
 <!-- End feature area -->
@@ -431,7 +430,7 @@
                         <li><a href="#">Digital content marketing online clients plateform</a></li>
                         <li><a href="#">Safe secure services for you online email account</a></li>
                     </ul>
-                    <a class="overview-btn" href="{{ route('frontend.register') }}">Register today</a>
+                    <a class="overview-btn" href="{{ route('register') }}">Register today</a>
                 </div>
             </div>
             <!-- End column-->
@@ -453,17 +452,17 @@
                         <a href="#" class="app-btn right-btn">App store</a>
                     </div>
                 </div>
-            </div>  
+            </div>
             <!-- End column -->
             <!-- Start column -->
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="download-image">
                     <img src="img/about/download.jpg" alt="download-image">
                 </div>
-            </div> 
+            </div>
             <!-- End column -->
         </div>
     </div>
 </div>
-<!-- End apps download area -->    
+<!-- End apps download area -->
 @endsection

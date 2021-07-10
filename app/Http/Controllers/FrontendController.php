@@ -44,4 +44,13 @@ class FrontendController extends Controller
 
         return view('frontend.register', $data);
     }
+    /**
+     * Contact page
+     * @return View
+     */
+    public function submit_login() {
+        $data['title'] = 'Register';
+
+        return redirect()->route('user.dashboard');
+    }
 }

@@ -263,7 +263,7 @@
                         <li><a href="#">Digital content marketing online clients plateform</a></li>
                         <li><a href="#">Safe secure services for you online email account</a></li>
                     </ul>
-                    <a class="overview-btn" href="{{ route('frontend.register') }}">Register today</a>
+                    <a class="overview-btn" href="{{ route('register') }}">Register today</a>
                 </div>
             </div>
             <!-- End column-->

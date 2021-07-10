@@ -97,7 +97,7 @@
                                 @else
                                 <div class="header-right-link">
                                     <!-- search option end -->
-                                    <a class="s-menu" href="{{ route('frontend.register') }}">Register</a>
+                                    <a class="s-menu" href="{{ route('register') }}">Register</a>
                                 </div>
                                 @endif
                                 <!-- mainmenu start -->
@@ -138,7 +138,7 @@
                                     <li><a class="pages" href="{{ route('frontend.index') }}">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About us</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact us</a></li>
-                                    <a class="s-menu" href="{{ route('frontend.register') }}">Register</a>
+                                    <a class="s-menu" href="{{ route('register') }}">Register</a>
                                 </ul>
                             </nav>
                         </div>
