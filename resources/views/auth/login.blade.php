@@ -15,12 +15,12 @@
                         <div class="login-form signup-form">
                             <h4 class="login-title text-center">LOGIN</h4>
                             <div class="row">
-                                <form id="contactForm" method="POST" action="#" class="log-form">
+                                <form id="contactForm" method="POST" action="{{ route('login') }}" class="log-form">
                                     @csrf
 
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <label for="email_address">E-mail Address</label>
-                                        <input type="email" id="email_address" class="form-control" placeholder="e.g johndoe@mail.com" required data-error="Please enter email address">
+                                        <input type="email" name="email" id="email_address" class="form-control" placeholder="e.g johndoe@mail.com" required data-error="Please enter email address">
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <label for="password">Password</label>

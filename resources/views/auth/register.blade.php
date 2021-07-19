@@ -15,24 +15,28 @@
                         <div class="login-form signup-form">
                             <h4 class="login-title text-center">REGISTER</h4>
                             <div class="row">
-                                <form id="contactForm" method="POST" action="#" class="log-form">
+                                <form method="POST" action="{{ route('register') }}" class="log-form">
                                     @csrf
 
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <label for="email_address">E-mail Address</label>
-                                        <input type="email" id="email_address" class="form-control" placeholder="e.g johndoe@mail.com" required data-error="Please enter email address">
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                         <label for="firstname">First Name</label>
-                                        <input type="text" id="firstname" class="form-control" placeholder="e.g john" required data-error="Please enter Firstname">
+                                        <input type="text" name="firstname" value="{{ old('firstname') ?? '' }}" class="form-control" placeholder="e.g john" required data-error="Please enter Firstname">
+                                        @error('firstname') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                         <label for="lastname">Last Name</label>
-                                        <input type="text" id="lastname" class="form-control" placeholder="e.g doe" required data-error="Please enter Lastname">
+                                        <input type="text" name="lastname" value="{{ old('lastname') ?? '' }}" class="form-control" placeholder="e.g doe" required data-error="Please enter Lastname">
+                                        @error('lastname') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                        <label for="email_address">E-mail Address</label>
+                                        <input type="email" name="email" value="{{ old('email') ?? '' }}" class="form-control" placeholder="e.g johndoe@mail.com" required data-error="Please enter email address">
+                                        @error('email') <span class="text-danger">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                         <label for="password">Password</label>
-                                        <input type="password" id="password" class="form-control" placeholder="xxxxxxxx" required data-error="Please enter password">
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="xxxxxxxx" required data-error="Please enter password">
+                                        @error('password') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                         <div class="check-group flexbox">

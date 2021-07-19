@@ -91,8 +91,11 @@
                             <div class="col-md-9 col-sm-9">
                                 @if (Auth::user())
                                 <div class="header-right-link">
+                                    <form action="{{ route('logout') }}" method="POST" id="logout">
+                                        @csrf
+                                    </form>
                                     <!-- search option end -->
-                                    <a class="s-menu" style="background-color: brown; border-color: brown" href="#">Logout</a>
+                                    <a href="#" onclick="event.preventDefault(); $('#logout').submit();" class="s-menu" style="background-color: brown; border-color: brown">Logout</a>
                                 </div>
                                 @else
                                 <div class="header-right-link">
@@ -135,10 +138,15 @@
                             </div>
                             <nav id="dropdown">
                                 <ul>
+                                    @if (!Auth::user())
                                     <li><a class="pages" href="{{ route('frontend.index') }}">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About us</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact us</a></li>
                                     <a class="s-menu" href="{{ route('register') }}">Register</a>
+                                    @else
+                                    <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                    <a href="#" onclick="event.preventDefault(); $('#logout').submit();" class="s-menu" style="background-color: brown; border-color: brown">Logout</a>
+                                    @endif
                                 </ul>
                             </nav>
                         </div>

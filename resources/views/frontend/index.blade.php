@@ -28,14 +28,15 @@
                                         <form action="{{ route('login') }}" method="POST">
                                             @csrf
 
-                                            <label for="email_address">Enter Email address</label>
-                                            <input type="text" name="email_address" class="form-input" placeholder="example@gmail.com" style="width: 100%; color: #333;" required>
-                                            <div class="inner-form">
+                                            <div class="form-group" style="margin: 0">
+                                                <label for="email_address">Enter Email address</label>
+                                                <input type="text" name="email" class="form-input" placeholder="example@gmail.com" style="width: 100%; color: #333;" required>
                                             </div>
-                                            <label for="password">Enter Password</label>
-                                            <input type="password" name="password" class="form-input" placeholder="xxxxxxxx" style="width: 100%; color: #333;" required>
-                                            <div class="inner-form">
+                                            <div class="form-group" style="margin: 0">
+                                                <label for="password">Enter Password</label>
+                                                <input type="password" name="password" class="form-input" placeholder="xxxxxxxx" style="width: 100%; color: #333;" required>
                                             </div>
+                                            @error('email') <span class="text-danger">{{ $message }}</span>@enderror
                                             <button type="submit" class="cale-btn">Login</button>
                                         </form>
                                         <div class="terms-text">

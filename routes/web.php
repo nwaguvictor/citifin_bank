@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\UserController;
@@ -25,7 +26,7 @@ Route::get('/about', [FrontendController::class, 'about_us'])->name('frontend.ab
 Route::get('/contact', [FrontendController::class, 'contact_us'])->name('frontend.contact');
 
 // USER DASHBOARD
-Route::middleware('web')->prefix('user/dashboard')->group(function() {
+Route::middleware('auth')->prefix('user/dashboard')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('/deposit-money', [UserController::class, 'deposit_money'])->name('user.deposit_money');
     Route::get('/transfer-money', [UserController::class, 'transfer_money'])->name('user.transfer_money');
@@ -35,7 +36,7 @@ Route::middleware('web')->prefix('user/dashboard')->group(function() {
 });
 
 // ADMIN DASHBOARD
-Route::middleware('web')->prefix('admin/dashboard')->group(function() {
+Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [AdminDashboardController::class, 'get_users'])->name('admin.dashboard.users');
     Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])->name('admin.dashboard.show');
