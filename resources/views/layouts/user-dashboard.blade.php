@@ -38,7 +38,7 @@
                             <div class="single-dash-head">
                                 <div class="dashboard-profile">
                                     <div class="profile-content">
-                                        <img src="{{ asset('uploads/'. Auth::user()->passport) }}" alt="user profile photo">
+                                        <img src="{{ asset('uploads/documents/'. Auth::user()->passport) }}" alt="user profile photo">
                                         <span class="pro-name">{{ Auth::user()->fullName }}</span>
                                     </div>
                                 </div>

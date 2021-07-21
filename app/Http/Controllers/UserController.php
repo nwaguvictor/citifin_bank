@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -58,7 +57,7 @@ class UserController extends Controller
         // Storing File
         if ($request->hasFile('pop')) {
             $fileName = $this->fileNameGenerator($user, $request, 'pop');
-            $request->file('pop')->storeAs('transactions', $fileName);
+            $request->file('pop')->storeAs('uploads/transactions', $fileName);
             $data['pop'] = $fileName;
         }
 
@@ -157,17 +156,17 @@ class UserController extends Controller
         // Uploading User's documents
         if ($request->hasFile('id_front')) {
             $fileName = $this->fileNameGenerator($user, $request, 'id_front');
-            $request->file('id_front')->storeAs('uploads', $fileName);
+            $request->file('id_front')->storeAs('uploads/documents', $fileName);
             $data['id_front'] = $fileName;
         }
         if ($request->hasFile('id_back')) {
             $fileName = $this->fileNameGenerator($user, $request, 'id_back');
-            $request->file('id_back')->storeAs('uploads', $fileName);
+            $request->file('id_back')->storeAs('uploads/documents', $fileName);
             $data['id_back'] = $fileName;
         }
         if ($request->hasFile('passport')) {
             $fileName = $this->fileNameGenerator($user, $request, 'passport');
-            $request->file('passport')->storeAs('uploads', $fileName);
+            $request->file('passport')->storeAs('uploads/documents', $fileName);
             $data['passport'] = $fileName;
         }
 
