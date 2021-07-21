@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UserDepositSubmit;
 use App\Http\Requests\WithdrawalRequest;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    //***VIEWS**** */
+
     /**
      * User Dashboard
      * @return View
@@ -22,7 +25,6 @@ class UserController extends Controller
         $data['title'] = 'Dashboard';
         return view('user-dashboard.index', $data);
     }
-
     /**
      * User Dashboard - Transfer Money
      * @return View
@@ -31,7 +33,6 @@ class UserController extends Controller
         $data['title'] = 'Transfer Money';
         return view('user-dashboard.transfer-money', $data);
     }
-
     /**
      * User Dashboard - Deposit Money
      * @return View
@@ -40,6 +41,34 @@ class UserController extends Controller
         $data['title'] = 'Deposit Money';
         return view('user-dashboard.deposit-money', $data);
     }
+    /**
+     * User Dashboard - Transaction Log
+     * @return View
+     */
+    public function transaction_log() {
+        $data['title'] = 'Transaction Log';
+        $data['transactions'] = Transaction::with('user')->orderBy('updated_at', 'desc')->get();
+        return view('user-dashboard.transaction-log', $data);
+    }
+
+    /**
+     * User Dashboard - request withrawal
+     * @return View
+     */
+    public function request_withdrawal() {
+        $data['title'] = 'Request Withdrawal';
+        return view('user-dashboard.request-withdrawal', $data);
+    }
+     /**
+     * User Dashboard - User Profile
+     * @return View
+     */
+    public function user_profile() {
+        $data['title'] = 'User Profile';
+        return view('user-dashboard.user-profile', $data);
+    }
+
+    // VIEWS END -------
 
     /**
      * User Dashboard - Deposit Money Submit
@@ -79,24 +108,6 @@ class UserController extends Controller
         return redirect()->route('user.dashboard')->with('success', 'Submit was successful, waiting for confirmation');
 
     }
-
-    /**
-     * User Dashboard - Transaction Log
-     * @return View
-     */
-    public function transaction_log() {
-        $data['title'] = 'Transaction Log';
-        return view('user-dashboard.transaction-log', $data);
-    }
-
-    /**
-     * User Dashboard - request withrawal
-     * @return View
-     */
-    public function request_withdrawal() {
-        $data['title'] = 'Request Withdrawal';
-        return view('user-dashboard.request-withdrawal', $data);
-    }
     /**
      * User Dashboard - submit withrawal
      * @param $request App\Http\Requests\WithdrawalRequest
@@ -134,15 +145,6 @@ class UserController extends Controller
 
         // redirect with success message
         return redirect()->route('user.dashboard')->with('success', 'Withdrawal successful, waiting approval');
-    }
-
-    /**
-     * User Dashboard - User Profile
-     * @return View
-     */
-    public function user_profile() {
-        $data['title'] = 'User Profile';
-        return view('user-dashboard.user-profile', $data);
     }
 
     /**

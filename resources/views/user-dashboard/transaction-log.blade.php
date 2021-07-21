@@ -16,23 +16,25 @@
         <table class="table table-bordered table-dark" style="width: 100%">
             <thead style="background-color: #1BA8C6">
                 <tr>
-                    <th>#</th>
+                    <th>TxnId</th>
                     <th>Account Name</th>
                     <th>Account Number</th>
-                    <th>Activity</th>
+                    <th>Type</th>
                     <th>Amount</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($transactions as $transaction)
                 <tr>
-                    <td>1</td>
-                    <td>Firstname Lastname</td>
-                    <td>099909xxx</td>
-                    <td>Deposit</td>
-                    <td>$100</td>
-                    <td>[ SUCCESSFUL ]</td>
+                    <td>{{ $transaction->txnId }}</td>
+                    <td>{{ $transaction->user->fullName}}</td>
+                    <td>{{ $transaction->account_number }}</td>
+                    <td>{{ $transaction->type }}</td>
+                    <td>{{ $transaction->amount. ' ' .$transaction->currency }}</td>
+                    <td>[ {{ $transaction->status }} ]</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

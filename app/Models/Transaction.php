@@ -11,4 +11,9 @@ class Transaction extends Model
 
     // Mass Assignment Properties
     protected $guarded = [];
+
+    // Relationship binding
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
