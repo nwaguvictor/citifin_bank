@@ -29,10 +29,13 @@ Route::get('/contact', [FrontendController::class, 'contact_us'])->name('fronten
 Route::middleware('auth')->prefix('user/dashboard')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('/deposit-money', [UserController::class, 'deposit_money'])->name('user.deposit_money');
+    Route::post('/submit-deposit', [UserController::class, 'submit_deposit'])->name('user.deposit.submit');
     Route::get('/transfer-money', [UserController::class, 'transfer_money'])->name('user.transfer_money');
     Route::get('/request-withdrawal', [UserController::class, 'request_withdrawal'])->name('user.request_withdrawal');
+    Route::post('/submit-withdrawal', [UserController::class, 'submit_withdrawal'])->name('user.withdrawal.submit');
     Route::get('/transaction-log', [UserController::class, 'transaction_log'])->name('user.transaction_log');
     Route::get('/user-profile', [UserController::class, 'user_profile'])->name('user.user_profile');
+    Route::post('/user-profile', [UserController::class, 'user_profile_update'])->name('user.profile.update');
 });
 
 // ADMIN DASHBOARD

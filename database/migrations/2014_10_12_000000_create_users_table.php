@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
+            $table->string('dob')->nullable();
             $table->string('account_number')->nullable();
             $table->enum('account_type', ['USD', 'EUR', 'GBP'])->default('USD');
-            $table->string('balance')->default(0);
+            $table->integer('balance')->unsigned()->default(0);
             $table->string('ssn')->nullable();
             $table->string('id_front')->nullable();
             $table->string('id_back')->nullable();

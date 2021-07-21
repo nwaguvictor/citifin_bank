@@ -8,66 +8,110 @@
                 <div class="form-text">
                     <h4 class="form-top">Profile Details</h4>
                     <div class="form-inner">
-                        <form action="#" method="POST">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        @if (session('success'))
+                        <p>{{ session('success') }}</p>
+                        @elseif(session('fail'))
+                        <p>{{ session('fail') }}</p>
+                        @endif
+
+                        {{-- Account status information --}}
+                        @if (Auth::user()->status == 'ACTIVATED')
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            {{-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> --}}
+                            <strong>
+                                <i class="fa fa-info-circle fa-fw" title="info"></i>Account Approved!
+                            </strong>Your account has been approved.
+                        </div>
+                        @elseif (Auth::user()->status == 'UNVERIFIED')
+                        <div class="alert alert-warning" role="alert">
+                            <strong>
+                                <i class="fa fa-info-circle fa-fw" title="info"></i>Unverified Account!
+                            </strong>Please verify your email address.
+                        </div>
+                        @elseif (Auth::user()->status == 'DEACTIVATED')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>
+                                <i class="fa fa-info-circle fa-fw" title="info"></i>Account Deactivated!
+                            </strong>Please contact the customer support to activate your account.
+                        </div>
+                        @endif
+                        {{-- Account status information ends--}}
+
+                        <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-6 col-sm-6 col-xs-12 mb-3">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" name="firstname" id="firstname" placeholder="John" required>
+                                    <input type="text" value="{{ Auth::user()->firstname }}" name="firstname" id="firstname" readonly>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12 mb-3">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" name="lastname" id="lastname" placeholder="Doe" required>
+                                    <input type="text" value="{{ Auth::user()->lastname }}" name="lastname" id="lastname" readonly>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="row mb-3">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="email_address">Email Address</label>
-                                    <input type="text" name="email_address" id="email_address" value="John@mail.com" readonly>
+                                    <input type="text" name="email" id="email" value="{{ Auth::user()->email }}" readonly>
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <label for="phone_number">Phone Number</label>
-                                    <input type="tel" name="phone_number" id="phone_number" placeholder="+1 555 - 444 - 444" required>
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" name="phone" id="phone" placeholder="+1 555 - 444 - 444"
+                                    value="{{ old('phone') ?? Auth::user()->phone }}"
+                                    {{ Auth::user()->phone ? 'readonly' : 'required' }}>
+                                    @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="dob">D.O.B</label>
-                                    <input type="date" id="dob" name="dob" required>
+                                    <input type="date" id="dob" name="dob"
+                                    value="{{ old('dob') ?? Auth::user()->dob }}"
+                                    {{ Auth::user()->dob ? 'readonly' : 'required' }}>
+                                    @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="row mb-3">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="account_number">Account Number</label>
-                                    <input type="number" name="account_number" id="account_number" value="091000019" readonly>
+                                    <input type="text" name="account_number" id="account_number"
+                                    value="{{ Auth::user()->account_number ? Auth::user()->account_number : 'xxxxxxxxxx' }}" readonly>
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="currency">Account Type</label>
-                                        <select name="account_type" id="account_type">
-                                        <option selected value="USD">USD</option>
-                                        <option value="GBP">GBP</option>
-                                        <option value="EUR">EUR</option>
-                                    </select>
+                                        <input type="text" name="account_type" id="account_type"
+                                        value="{{ Auth::user()->account_type }}" readonly>
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="ssn">SSN</label>
-                                    <input type="number" id="ssn" name="ssn" placeholder="000-00-0000" required>
+                                    <input type="number" id="ssn" name="ssn" placeholder="000-00-0000"
+                                    value="{{ old('ssn') ?? Auth::user()->ssn }}"
+                                    {{ Auth::user()->ssn ? 'readonly' : 'required' }}>
+                                    @error('ssn') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="row mb-3">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="id_front">Valid ID (Front)</label>
-                                    <input type="file" class="form-control" id="id_front" name="id_front" required>
+                                    <input type="file" class="form-control" id="id_front" name="id_front"
+                                    {{ Auth::user()->id_front ? '' : 'required' }}>
+                                    @error('id_front') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="id_back">Valid ID (Back)</label>
-                                    <input type="file" class="form-control" id="id_back" name="id_back" required>
+                                    <input type="file" class="form-control" id="id_back" name="id_back"
+                                    {{ Auth::user()->id_back ? '' : 'required' }}>
+                                    @error('id_back') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="passport">Passport</label>
-                                    <input type="file" class="form-control" id="passport" name="passport" required>
+                                    <input type="file" class="form-control" id="passport" name="passport"
+                                    {{ Auth::user()->passport ? '' : 'required' }}>
+                                    @error('passport') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <button type="submit" class="form-control">Update Profile</button>
+                                    <button type="submit" class="form-control" {{ Auth::user()->status == 'ACTIVATED' ? 'disabled'  : ''}} >Update Profile</button>
                                 </div>
                             </div>
                         </form>

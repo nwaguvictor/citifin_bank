@@ -16,12 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'firstname',
-        'lastname',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,4 +36,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship binding
+     */
+    public function withdrawals() {
+        return $this->hasMany(Withdrawal::class);
+    }
+    /**
+     * Relationship binding
+     */
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
+    /**
+     * Relationship binding
+     */
+    public function deposits() {
+        return $this->hasMany(Deposit::class);
+    }
+
+    /**
+     * Method to tranform a column when retrieving resource
+     * @return string
+     */
+    public function getFullNameAttribute() {
+        return "$this->firstname $this->lastname";
+    }
 }

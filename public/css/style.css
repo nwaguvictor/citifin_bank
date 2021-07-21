@@ -2829,6 +2829,8 @@ span.email-notes{
     text-align: center;
 }
 .profile-content img {
+    width: 85px;
+    height: 85px;
     display: block;
     border-radius: 50%;
     border: 2px solid #1ba8c6;
@@ -2943,7 +2945,7 @@ span.email-notes{
     border: 1px solid #f6f6f6;
     border-radius: 4px;
     text-indent: 15px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px */
     background: transparent;
 }
 .dashboard-content .nice-select {
