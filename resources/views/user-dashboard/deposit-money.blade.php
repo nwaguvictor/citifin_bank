@@ -14,6 +14,15 @@
                                 <i class="fa fa-info-circle fa-fw"></i>Notice:
                             </strong>Please do contact admin for payment details
                         </div>
+                        {{-- Error messages --}}
+                        @if (session('fail'))
+                        <div class="alert alert-danger" role="alert">
+                            <strong>
+                                <i class="fa fa-info-circle fa-fw" title="info"></i>Error!
+                            </strong>{{ session('fail') }}
+                        </div>
+                        @endif
+
                         <form action="{{ route('user.deposit.submit') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">

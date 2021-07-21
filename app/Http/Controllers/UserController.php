@@ -52,7 +52,7 @@ class UserController extends Controller
         $data = [];
 
         if ($request->amount < $min) {
-            return redirect()->back()->with('fail', "minimum amount to deposit is $$min");
+            return redirect()->back()->with('fail', "minimum amount to deposit must be equivalent of $$min");
         }
 
         // Storing File
@@ -108,7 +108,7 @@ class UserController extends Controller
 
         // Confirm minimum withdrawal
         if ($request->amount < $min) {
-            return redirect()->back()->with('fail', "minimum withdrawal is $$min");
+            return redirect()->back()->with('fail', "minimum withdrawal must be equivalent of $$min");
         }
 
         // Check account balance

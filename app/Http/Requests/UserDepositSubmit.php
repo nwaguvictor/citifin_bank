@@ -37,6 +37,7 @@ class UserDepositSubmit extends FormRequest
     {
         return [
             'amount.required' => 'Amount is required',
+            'pop.required' => 'Proof of payment is required',
             'pop.file' => 'Prof of payment must be a valid file type',
             'pop.max' => 'Prof of payment file size too large'
         ];
