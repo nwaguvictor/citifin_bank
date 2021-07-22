@@ -13,7 +13,7 @@
         <h4 class="form-top">Transactions</h4>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-dark" style="width: 100%">
+        <table class="table table-bordered table-dark" style="width: 100%" id="data-table">
             <thead style="background-color: #1BA8C6">
                 <tr>
                     <th>TxnId</th>
@@ -37,6 +37,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center">
+            {{ $transactions->links('vendor.pagination.bootstrap-4') }}
+        </div>
     </div>
 </div>
 @endsection

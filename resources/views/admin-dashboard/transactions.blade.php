@@ -9,44 +9,33 @@
     </a>
 </div>
 <div class="table-responsive">
-    <table class="table table-bordered table-dark" style="width: 100%">
+    <table class="table table-bordered table-dark" style="width: 100%" id="data-table">
         <thead style="background-color: #1BA8C6">
             <tr>
-                <th>#</th>
                 <th>Account Name</th>
                 <th>Account Number</th>
-                <th>Activity</th>
+                <th>Type</th>
                 <th>Amount</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Firstname Lastname</td>
-                <td>099909xxx</td>
-                <td>Deposit</td>
-                <td>$100</td>
-                <td>[ SUCCESSFUL ]</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Firstname Lastname</td>
-                <td>099909xxx</td>
-                <td>Withdraw</td>
-                <td>$200</td>
-                <td>[ FAILED ]</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Firstname Lastname</td>
-                <td>099909xxx</td>
-                <td>Deposit</td>
-                <td>$100</td>
-                <td>[ SUCCESSFUL ]</td>
-            </tr>
+            @if ($transactions)
+                @foreach ($transactions as $transaction)
+                <tr>
+                    <td>{{ $transaction->user->fullName }}</td>
+                    <td>{{ $transaction->account_number }}</td>
+                    <td>{{ $transaction->type }}</td>
+                    <td>{{ $transaction->amount. ' ' .$transaction->currency }}</td>
+                    <td>[ {{ $transaction->status }} ]</td>
+                </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
+    <div class="text-center">
+        {{ $transactions->links('vendor.pagination.bootstrap-4') }}
+    </div>
 </div>
 </div>
 @endsection

@@ -42,7 +42,7 @@ Route::middleware('auth')->prefix('user/dashboard')->group(function() {
 Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [AdminDashboardController::class, 'get_users'])->name('admin.dashboard.users');
-    Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])->name('admin.dashboard.show');
+    Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])->name('admin.dashboard.users.show');
     Route::get('/withdrawals', [AdminDashboardController::class, 'get_withdrawals'])->name('admin.dashboard.withdrawals');
     Route::get('/deposits', [AdminDashboardController::class, 'get_deposits'])->name('admin.dashboard.deposits');
     Route::get('/transactions', [AdminDashboardController::class, 'get_transactions'])->name('admin.dashboard.transactions');

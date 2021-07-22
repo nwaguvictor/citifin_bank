@@ -9,4 +9,9 @@ class Withdrawal extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    // Relationship binding
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -12,6 +12,9 @@
 
     <!-- all css here -->
 
+    {{-- bootstrap 5.0.2 --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <!-- bootstrap v3.3.6 css -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- owl.carousel css -->
@@ -36,6 +39,9 @@
 
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    {{-- datatable --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 
@@ -300,6 +306,46 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('js/main.js') }}"></script>
+    {{-- Sweet Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+
+    {{-- datatable --}}
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#data-table').DataTable({
+                info: false,
+                bPaginate: false
+            });
+        } );
+
+        // Toast
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            padding: '0 .5rem',
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        @if (session('success'))
+            Toast.fire({
+                icon: 'success',
+                text: "{{ session('success') }}"
+            });
+        @elseif (session('fail'))
+            Toast.fire({
+                icon: 'error',
+                text: "{{ session('fail') }}"
+            });
+        @endif
+    </script>
 
 </body>
 </html>

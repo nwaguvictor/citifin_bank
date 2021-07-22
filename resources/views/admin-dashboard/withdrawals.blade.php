@@ -7,11 +7,10 @@
         <span class="mr-3" style="text-transform: uppercase">withdrawal requests </span>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-dark" style="width: 100%">
+        <table class="table table-bordered table-dark" style="width: 100%" id="data-table">
             <thead style="background-color: #1BA8C6">
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
+                    <th>Account Name</th>
                     <th>Bank Name</th>
                     <th>Address</th>
                     <th>Amount</th>
@@ -21,178 +20,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Fistname Lastname</td>
-                    <td>Central Bank</td>
-                    <td>Dallas, USA</td>
-                    <td>$1,000</td>
-                    <td>USD</td>
-                    <td>[ APPROVED ]</td>
-                    <td>
-                        <a class="btn btn-success btn-sm" href="#">
-                            <i class="fa fa-check fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fa fa-ban fa-fw"></i>
-                        </a>
-                    </td>
-                </tr>
+                @if ($withdrawals)
+                    @foreach ($withdrawals as $withdrawal)
+                    <tr>
+                        <td>{{ $withdrawal->user->fullName }}</td>
+                        <td>{{ $withdrawal->bank_name }}</td>
+                        <td>{{ $withdrawal->bank_address }}</td>
+                        <td>{{ $withdrawal->amount }}</td>
+                        <td>{{ $withdrawal->currency }}</td>
+                        <td>[ {{ $withdrawal->status }} ]</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="#">
+                                <i class="fa fa-check fa-fw"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="#">
+                                <i class="fa fa-ban fa-fw"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
+        <div class="text-center">
+            {{ $withdrawals->links('vendor.pagination.bootstrap-4') }}
+        </div>
     </div>
 </div>
 @endsection

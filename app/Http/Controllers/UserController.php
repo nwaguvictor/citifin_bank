@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function transaction_log() {
         $data['title'] = 'Transaction Log';
-        $data['transactions'] = Transaction::with('user')->orderBy('updated_at', 'desc')->get();
+        $data['transactions'] = Transaction::with('user')->latest('updated_at')->paginate(5);
         return view('user-dashboard.transaction-log', $data);
     }
 
