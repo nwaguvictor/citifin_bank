@@ -43,9 +43,26 @@ Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [AdminDashboardController::class, 'get_users'])->name('admin.dashboard.users');
     Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])->name('admin.dashboard.users.show');
-    Route::get('/withdrawals', [AdminDashboardController::class, 'get_withdrawals'])->name('admin.dashboard.withdrawals');
-    Route::get('/deposits', [AdminDashboardController::class, 'get_deposits'])->name('admin.dashboard.deposits');
-    Route::get('/transactions', [AdminDashboardController::class, 'get_transactions'])->name('admin.dashboard.transactions');
+    Route::get('/withdrawals', [AdminDashboardController::class, 'get_withdrawals'])
+        ->name('admin.dashboard.withdrawals');
+
+    Route::patch('/withdrawals/{withdrawal}/approve', [AdminDashboardController::class, 'approve_withdrawal'])
+        ->name('admin.dashboard.withdrawal.approve');
+
+    Route::patch('/withdrawals/{withdrawal}/decline', [AdminDashboardController::class, 'decline_withdrawal'])
+        ->name('admin.dashboard.withdrawal.decline');
+
+    Route::get('/deposits', [AdminDashboardController::class, 'get_deposits'])
+        ->name('admin.dashboard.deposits');
+
+    Route::patch('/deposits/{deposit}/confirm', [AdminDashboardController::class, 'confirm_deposit'])
+        ->name('admin.dashboard.deposit.confirm');
+
+    Route::patch('/deposits/{deposit}/decline', [AdminDashboardController::class, 'decline_deposit'])
+        ->name('admin.dashboard.deposit.decline');
+
+    Route::get('/transactions', [AdminDashboardController::class, 'get_transactions'])
+        ->name('admin.dashboard.transactions');
 });
 
 

@@ -16,6 +16,7 @@ class CreateWithdrawalsTable extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('txnId');
             $table->string('account_name');
             $table->string('account_number');
             $table->string('bank_name');

@@ -313,12 +313,37 @@
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
     <script>
+        // data table
         $(document).ready(function() {
             $('#data-table').DataTable({
                 info: false,
                 bPaginate: false
             });
         } );
+
+        // confirm actions
+        function confirmActionButton(id, message = "Are you sure you want to perform this action?") {
+            event.preventDefault();
+            Swal.fire({
+                // title: 'Are you sure?',
+                text: message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, continue!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire(
+                    // 'Done!',
+                    // 'successfully',
+                    // 'success'
+                    // )
+                    return document.getElementById(id).submit();
+
+                }
+            })
+        }
 
         // Toast
         const Toast = Swal.mixin({

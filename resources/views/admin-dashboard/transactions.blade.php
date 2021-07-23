@@ -12,8 +12,9 @@
     <table class="table table-bordered table-dark" style="width: 100%" id="data-table">
         <thead style="background-color: #1BA8C6">
             <tr>
-                <th>Account Name</th>
-                <th>Account Number</th>
+                <th>TnxId</th>
+                <th>Name</th>
+                <th>Account</th>
                 <th>Type</th>
                 <th>Amount</th>
                 <th>Status</th>
@@ -23,6 +24,7 @@
             @if ($transactions)
                 @foreach ($transactions as $transaction)
                 <tr>
+                    <td>{{ $transaction->txnId }}</td>
                     <td>{{ $transaction->user->fullName }}</td>
                     <td>{{ $transaction->account_number }}</td>
                     <td>{{ $transaction->type }}</td>

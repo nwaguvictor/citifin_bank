@@ -78,6 +78,7 @@ class UserController extends Controller
         $user = User::where('id', Auth::id())->first();
         $min = Config::get('minimum_deposit', 100);
         $data = [];
+        $txnId = 'CRD/'. date('ymd') . '/' .Str::upper(Str::random(10));
 
         if ($request->amount < $min) {
             return redirect()->back()->with('fail', "minimum amount to deposit must be equivalent of $$min");
@@ -93,10 +94,11 @@ class UserController extends Controller
         $data['amount'] = $request->amount;
         $data['currency'] = $request->currency;
         $data['message'] = $request->message;
+        $data['txnId'] = $txnId;
 
         // Transaction Data
         $transactionData['account_number'] = $user->account_number;
-        $transactionData['txnId'] = 'CRD/'. date('ymd') . '/' .Str::upper(Str::random(10));
+        $transactionData['txnId'] = $txnId;
         $transactionData['type'] = 'Credit';
         $transactionData['amount'] = $request->amount;
 
@@ -115,6 +117,8 @@ class UserController extends Controller
     public function submit_withdrawal(WithdrawalRequest $request) {
         $user = User::where('id', Auth::id())->first();
         $min = Config::get('minimum_withdrawal', 100);
+        $txnId = 'DEB/'. date('ymd') . '/' .Str::upper(Str::random(10));
+        $request['txnId'] = $txnId;
 
         // Confirm minimum withdrawal
         if ($request->amount < $min) {
@@ -131,7 +135,7 @@ class UserController extends Controller
 
         // Transaction Details
         $transactionData['account_number'] = $request->account_number;
-        $transactionData['txnId'] = 'DEB/'. date('ymd') . '/' .Str::upper(Str::random(10));
+        $transactionData['txnId'] = $txnId;
         $transactionData['type'] = 'Debit';
         $transactionData['amount'] = $request->amount;
         $transactionData['currency'] = $request->currency;

@@ -16,6 +16,7 @@ class CreateDepositsTable extends Migration
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('txnId');
             $table->integer('amount')->unsigned();
             $table->string('currency')->default('USD');
             $table->string('pop');
