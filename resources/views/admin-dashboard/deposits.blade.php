@@ -47,12 +47,14 @@
                             <a class="btn btn-primary btn-sm" href="#">
                                 <i class="fa fa-download fa-fw"></i>
                             </a>
-                            <a onclick="confirmActionButton('confirm-{{ $deposit->id }}')" class="btn btn-success btn-sm" href="#">
-                                <i class="fa fa-thumbs-o-up fa-fw"></i>
-                            </a>
-                            <a onclick="confirmActionButton('decline-{{ $deposit->id }}')" class="btn btn-danger btn-sm" href="#">
-                                <i class="fa fa-thumbs-o-down fa-fw"></i>
-                            </a>
+                            @if ($deposit->status == 'PENDING')
+                                <a onclick="confirmActionButton('confirm-{{ $deposit->id }}')" class="btn btn-success btn-sm" href="#" {{ $deposit->status != 'PENDING' ? 'disabled' : '' }}>
+                                    <i class="fa fa-thumbs-o-up fa-fw"></i>
+                                </a>
+                                <a onclick="confirmActionButton('decline-{{ $deposit->id }}')" class="btn btn-danger btn-sm" href="#" {{ $deposit->status != 'PENDING' ? 'disabled' : '' }}>
+                                    <i class="fa fa-thumbs-o-down fa-fw"></i>
+                                </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

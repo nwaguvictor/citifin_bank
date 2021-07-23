@@ -39,12 +39,16 @@
                                 @csrf
                             </form>
 
-                            <a class="btn btn-success btn-sm" onclick="confirmActionButton('approve-{{ $withdrawal->id }}')" href="">
-                                <i class="fa fa-check fa-fw"></i>
-                            </a>
-                            <a class="btn btn-danger btn-sm" onclick="confirmActionButton('decline-{{ $withdrawal->id }}')" href="#">
-                                <i class="fa fa-ban fa-fw"></i>
-                            </a>
+                            @if ($withdrawal->status == 'PENDING')
+                                <a class="btn btn-success btn-sm" onclick="confirmActionButton('approve-{{ $withdrawal->id }}')" href="#" {{ $withdrawal->status != 'PENDING' ? 'disabled' : '' }}>
+                                    <i class="fa fa-check fa-fw"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" onclick="confirmActionButton('decline-{{ $withdrawal->id }}')" href="#" {{ $withdrawal->status != 'PENDING' ? 'disabled' : '' }}>
+                                    <i class="fa fa-ban fa-fw"></i>
+                                </a>
+                            @else
+                            <div class="badge badge-success">Reviewed</div>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

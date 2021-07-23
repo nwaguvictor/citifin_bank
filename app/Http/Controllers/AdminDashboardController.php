@@ -76,6 +76,9 @@ class AdminDashboardController extends Controller
             $withdrawal->update(['status' => 'DECLINED']);
             $transaction = Transaction::where('txnId', $withdrawal->txnId)->first();
             $transaction->update(['status' => 'DECLINED']);
+            // Refund to user
+            $withdrawal->user->balance += $withdrawal->amount;
+            $withdrawal->user->save();
         });
         return redirect()->back()->with('success', 'Withdrawal Declined');
     }
