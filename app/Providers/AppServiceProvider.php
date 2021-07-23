@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
         // Set global variables
         Config::set('minimum_withdrawal', 100);
         Config::set('minimum_deposit', 100);
+
+        $data['users'] = \App\Models\User::all();
+        $data['transactions'] = \App\Models\Transaction::all();
+        view()->share($data);
     }
 }

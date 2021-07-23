@@ -33,7 +33,10 @@
                                 <div class="dashboard-profile">
                                     <div class="profile-content">
                                         <img src="{{ asset('img/about/profile.png') }}" alt="profile photo">
-                                        <span class="pro-name">Admin</span>
+                                        <span class="pro-name">
+                                            {{ Auth::user()->firstname }}
+                                            [ <span>ADMIN</span> ]
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +46,9 @@
                                 <div class="dashboard-amount">
                                     <div class="amount-content">
                                         <i class="fa fa-users"></i>
-                                        <span class="pro-name">11 Total User</span>
+                                        <span class="pro-name">
+                                            {{ $users->count() }} Total Users
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +58,9 @@
                                 <div class="dashboard-amount">
                                     <div class="amount-content">
                                         <i class="flaticon-050-credit-card-2"></i>
-                                        <span class="pro-name">9032xxxxx</span>
+                                        <span class="pro-name">
+                                            {{ $transactions->count() }} Total Transactions
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -100,9 +107,14 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu" style="background-color: #1B2654">
-                                      <li><a href="#">Profile</a></li>
-                                      <li><a href="#">Change Password</a></li>
-                                      <li><a href="#">Sign Out</a></li>
+                                        <li><a href="{{ route('admin.dashboard.profile') }}">Profile</a></li>
+                                        <form action="{{ route('logout') }}" method="POST" id="logout">
+                                            @csrf
+                                        </form>
+
+                                        <li><a href="#">Change Password</a></li>
+                                        <li><a form="logout" href="#">Sign Out</a>
+                                        </li>
                                     </ul>
                                   </div>
                             </li>

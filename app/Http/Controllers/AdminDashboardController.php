@@ -120,5 +120,17 @@ class AdminDashboardController extends Controller
         $data['transactions'] = Transaction::with('user')->latest('updated_at')->paginate(5);
         return view('admin-dashboard.transactions', $data);
     }
+
+    /**
+     * Admin Dashboard - Profile
+     */
+    public function admin_profile() {
+        $data['title'] = 'Admin Profile';
+        return view('admin-dashboard.profile', $data);
+    }
+    public function admin_profile_update(Request $request, User $user) {
+        $user->update($request->all());
+        return redirect()->back()->with('success', 'Profile Updated successfully');
+    }
 }
 

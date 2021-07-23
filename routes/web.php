@@ -75,6 +75,11 @@ Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
 
     Route::get('/transactions', [AdminDashboardController::class, 'get_transactions'])
         ->name('admin.dashboard.transactions');
+
+    Route::get('/profile', [AdminDashboardController::class, 'admin_profile'])
+        ->name('admin.dashboard.profile');
+    Route::post('/profile/{user}/update', [AdminDashboardController::class, 'admin_profile_update'])
+        ->name('admin.dashboard.profile.update');
 });
 
 
