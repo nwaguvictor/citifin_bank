@@ -18,7 +18,7 @@
                 <tr>
                     <th>TxnId</th>
                     <th>Account Name</th>
-                    <th>Account Number</th>
+                    <th>Account</th>
                     <th>Type</th>
                     <th>Amount</th>
                     <th>Status</th>

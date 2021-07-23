@@ -10,9 +10,9 @@
     <table class="table table-bordered table-dark" style="width: 100%" id="data-table">
         <thead style="background-color: #1BA8C6">
             <tr>
-                <th>Name</th>
-                <th>Account Number</th>
-                <th>Account Balance</th>
+                <th>Account Name</th>
+                <th>Account</th>
+                <th>Balance</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -26,15 +26,28 @@
                     <td>{{ $user->balance. ' ' .$user->account_type }}</td>
                     <td>[ {{ $user->status }} ]</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="{{route('admin.dashboard.users.show', $user->id)}}">
+                        {{-- Submission form --}}
+                        <form action="{{ route('admin.dashboard.user.activate', $user->id) }}" method="POST" id="activate-{{ $user->id }}">
+                            @method('PATCH')
+                            @csrf
+                        </form>
+
+                        <form action="{{ route('admin.dashboard.user.deactivate', $user->id) }}" method="POST" id="deactivate-{{ $user->id }}">
+                            @method('PATCH')
+                            @csrf
+                        </form>
+
+                        <a class="btn btn-primary btn-sm" href="{{route('admin.dashboard.users.show', $user->id)}}" title="download">
                             <i class="fa fa-eye fa-fw"></i>
                         </a>
-                        <a class="btn btn-success btn-sm" href="#">
+
+                        <button onclick="confirmActionButton('activate-{{ $user->id }}')" class="btn btn-success btn-sm">
                             <i class="fa fa-play fa-fw"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        </button>
+
+                        <button onclick="confirmActionButton('deactivate-{{ $user->id }}')" class="btn btn-sm btn-danger">
                             <i class="fa fa-pause fa-fw"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 @endforeach

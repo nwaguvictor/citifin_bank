@@ -12,7 +12,8 @@
                         <span class="pull-right">Balance: {{ $user->balance. ' ' .$user->account_type }}</span>
                     </div>
                     <div class="form-inner">
-                        <form action="#" method="POST">
+                        <form action="{{ route('admin.dashboard.user.update', $user->id) }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 mb-3">
                                     <label for="firstname">First name</label>
@@ -43,8 +44,8 @@
                                     <input type="number" name="account_number" value="{{ $user->account_number }}">
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
-                                    <label for="currency">Account Type</label>
-                                    <input type="text" name="currency" value="{{ $user->account_type }}">
+                                    <label for="account_type">Account Type</label>
+                                    <input type="text" name="account_type" value="{{ $user->account_type }}">
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                     <label for="ssn">SSN</label>

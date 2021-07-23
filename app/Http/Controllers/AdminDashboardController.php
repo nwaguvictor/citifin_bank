@@ -31,13 +31,28 @@ class AdminDashboardController extends Controller
         $data['users'] = User::latest('updated_at')->paginate(5);
         return view('admin-dashboard.users', $data);
     }
+
+    public function activate_user(User $user) {
+        $user->update(['status' => 'ACTIVATED']);
+        return redirect()->back()->with('success', 'User has been activated');
+    }
+
+    public function deactivate_user(User $user) {
+        $user->update(['status' => 'DEACTIVATED']);
+        return redirect()->back()->with('success', 'User has been deactivated');
+    }
     /**
      * Admin Dashboard - Users
      */
-    public function get_user($user) {
+    public function get_user(User $user) {
         $data['title'] = 'User Details';
-        $data['user'] = User::where('id', $user)->first();
+        $data['user'] = $user;
         return view('admin-dashboard.user', $data);
+    }
+
+    public function update_user(Request $request, User $user) {
+        $user->update($request->all());
+        return redirect()->back()->with('success', 'User updated successfully');
     }
     /**
      * Admin Dashboard - Withdrawals

@@ -42,7 +42,19 @@ Route::middleware('auth')->prefix('user/dashboard')->group(function() {
 Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [AdminDashboardController::class, 'get_users'])->name('admin.dashboard.users');
-    Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])->name('admin.dashboard.users.show');
+
+    Route::patch('/users/{user}/activate', [AdminDashboardController::class, 'activate_user'])
+        ->name('admin.dashboard.user.activate');
+
+    Route::patch('/users/{user}/deactivate', [AdminDashboardController::class, 'deactivate_user'])
+        ->name('admin.dashboard.user.deactivate');
+
+    Route::get('/users/{user}', [AdminDashboardController::class, 'get_user'])
+        ->name('admin.dashboard.users.show');
+
+    Route::post('/users/{user}/edit', [AdminDashboardController::class, 'update_user'])
+        ->name('admin.dashboard.user.update');
+
     Route::get('/withdrawals', [AdminDashboardController::class, 'get_withdrawals'])
         ->name('admin.dashboard.withdrawals');
 
