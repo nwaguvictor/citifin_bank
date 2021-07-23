@@ -74,12 +74,16 @@
                         <td>{{ $withdrawal->amount. ' ' .$withdrawal->currency }}</td>
                         <td>{{ $withdrawal->status }}</td>
                         <td>
+                            @if ($withdrawal->status == 'PENDING')
                             <a class="btn btn-success btn-sm" href="#">
                                 <i class="fa fa-check fa-fw"></i>
                             </a>
                             <a class="btn btn-danger btn-sm" href="#">
                                 <i class="fa fa-ban fa-fw"></i>
                             </a>
+                            @else
+                            <span class="badge badge-default">Reviewed</span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -121,12 +125,16 @@
                         <td>{{ Str::limit($deposit->message, 10, '...') }}</td>
                         <td>[{{ $deposit->status }}]</td>
                         <td>
+                            @if ($deposit->status == 'PENDING')
                             <a class="btn btn-success btn-sm" href="#">
                                 <i class="fa fa-check fa-fw"></i>
                             </a>
                             <a class="btn btn-danger btn-sm" href="#">
                                 <i class="fa fa-ban fa-fw"></i>
                             </a>
+                            @else
+                            <span class="badge badge-default">Reviewed</span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

@@ -113,7 +113,7 @@
                                         </form>
 
                                         <li><a href="#">Change Password</a></li>
-                                        <li><a form="logout" href="#">Sign Out</a>
+                                        <li><a form="logout" href="#">Logout</a>
                                         </li>
                                     </ul>
                                   </div>
