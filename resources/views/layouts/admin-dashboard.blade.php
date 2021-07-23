@@ -113,7 +113,7 @@
                                         </form>
 
                                         <li><a href="#">Change Password</a></li>
-                                        <li><a form="logout" href="#">Logout</a>
+                                        <li><a href="#" onclick="event.preventDefault(); $('#logout').submit()">Logout</a>
                                         </li>
                                     </ul>
                                   </div>

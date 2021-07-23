@@ -39,7 +39,7 @@ Route::middleware('auth')->prefix('user/dashboard')->group(function() {
 });
 
 // ADMIN DASHBOARD
-Route::middleware('auth')->prefix('admin/dashboard')->group(function() {
+Route::middleware(['auth', 'admin'])->prefix('admin/dashboard')->group(function() {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [AdminDashboardController::class, 'get_users'])->name('admin.dashboard.users');
 

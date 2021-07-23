@@ -74,11 +74,22 @@
                         <td>{{ $withdrawal->amount. ' ' .$withdrawal->currency }}</td>
                         <td>{{ $withdrawal->status }}</td>
                         <td>
+                            {{-- Submission form --}}
+                            <form action="{{ route('admin.dashboard.withdrawal.approve', $withdrawal->id) }}" method="POST" id="approve-{{ $withdrawal->id }}">
+                                @method('PATCH')
+                                @csrf
+                            </form>
+
+                            <form action="{{ route('admin.dashboard.withdrawal.decline', $withdrawal->id) }}" method="POST" id="decline-{{ $withdrawal->id }}">
+                                @method('PATCH')
+                                @csrf
+                            </form>
+
                             @if ($withdrawal->status == 'PENDING')
-                            <a class="btn btn-success btn-sm" href="#">
+                            <a onclick="confirmActionButton('approve-{{ $withdrawal->id }}')" class="btn btn-success btn-sm" href="#">
                                 <i class="fa fa-check fa-fw"></i>
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            <a onclick="confirmActionButton('decline-{{ $withdrawal->id }}')" class="btn btn-danger btn-sm" href="#">
                                 <i class="fa fa-ban fa-fw"></i>
                             </a>
                             @else
@@ -125,13 +136,24 @@
                         <td>{{ Str::limit($deposit->message, 10, '...') }}</td>
                         <td>[{{ $deposit->status }}]</td>
                         <td>
+                            {{-- Submission form --}}
+                            <form action="{{ route('admin.dashboard.deposit.confirm', $deposit->id) }}" method="POST" id="confirm-{{ $deposit->id }}">
+                                @method('PATCH')
+                                @csrf
+                            </form>
+
+                            <form action="{{ route('admin.dashboard.deposit.decline', $deposit->id) }}" method="POST" id="decline-{{ $deposit->id }}">
+                                @method('PATCH')
+                                @csrf
+                            </form>
+
                             @if ($deposit->status == 'PENDING')
-                            <a class="btn btn-success btn-sm" href="#">
+                            <button onclick="confirmActionButton('confirm-{{ $deposit->id }}')" class="btn btn-success btn-sm">
                                 <i class="fa fa-check fa-fw"></i>
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="#">
+                            </button>
+                            <button onclick="confirmActionButton('decline-{{ $deposit->id }}')" class="btn btn-danger btn-sm">
                                 <i class="fa fa-ban fa-fw"></i>
-                            </a>
+                            </button>
                             @else
                             <span class="badge badge-default">Reviewed</span>
                             @endif
