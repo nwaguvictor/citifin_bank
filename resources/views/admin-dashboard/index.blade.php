@@ -14,9 +14,9 @@
             <thead style="background-color: #1BA8C6">
                 <tr>
                     <th>Name</th>
-                    <th>Account Number</th>
-                    <th>Account Balance</th>
-                    <th>Account Status</th>
+                    <th>Account</th>
+                    <th>Balance</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>

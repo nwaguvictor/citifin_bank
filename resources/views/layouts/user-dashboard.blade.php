@@ -108,6 +108,11 @@
                                     <i class="ti-user"></i>User Profile
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('user.password.change') }}">
+                                    <i class="ti-lock"></i>Change Password
+                                </a>
+                            </li>
 
                         </ul>
                     </div>

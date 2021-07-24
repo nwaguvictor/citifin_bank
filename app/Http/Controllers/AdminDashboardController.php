@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminDashboardController extends Controller
 {
@@ -131,6 +132,28 @@ class AdminDashboardController extends Controller
     public function admin_profile_update(Request $request, User $user) {
         $user->update($request->all());
         return redirect()->back()->with('success', 'Profile Updated successfully');
+    }
+
+    /**
+     * Admin Dashboard - Password Change
+     */
+    public function admin_passowrd_change() {
+        $data['title'] = 'Change Password';
+        return view('admin-dashboard.password', $data);
+    }
+
+    /**
+     * Admin Dashboard - Password Update
+     */
+    public function admin_password_update(Request $request) {
+        if ($request->password != $request->password_confirm) {
+            return redirect()->back()->with('fail', 'Password does not match');
+        }
+
+        $user = User::where('id', $request->id)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('admin.dashboard')->with('success', 'Password Updated successfully');
     }
 }
 

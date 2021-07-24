@@ -112,7 +112,7 @@
                                             @csrf
                                         </form>
 
-                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="{{ route('admin.dashboard.password') }}">Change Password</a></li>
                                         <li><a href="#" onclick="event.preventDefault(); $('#logout').submit()">Logout</a>
                                         </li>
                                     </ul>

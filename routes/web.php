@@ -36,6 +36,8 @@ Route::middleware('auth')->prefix('user/dashboard')->group(function() {
     Route::get('/transaction-log', [UserController::class, 'transaction_log'])->name('user.transaction_log');
     Route::get('/user-profile', [UserController::class, 'user_profile'])->name('user.user_profile');
     Route::post('/user-profile', [UserController::class, 'user_profile_update'])->name('user.profile.update');
+    Route::get('/user-profile/password', [UserController::class, 'user_password_change'])->name('user.password.change');
+    Route::post('/user-profile/password', [UserController::class, 'user_password_update'])->name('user.password.update');
 });
 
 // ADMIN DASHBOARD
@@ -78,8 +80,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin/dashboard')->group(function(
 
     Route::get('/profile', [AdminDashboardController::class, 'admin_profile'])
         ->name('admin.dashboard.profile');
+
     Route::post('/profile/{user}/update', [AdminDashboardController::class, 'admin_profile_update'])
         ->name('admin.dashboard.profile.update');
+
+    Route::get('/profile/password', [AdminDashboardController::class, 'admin_passowrd_change'])
+        ->name('admin.dashboard.password');
+
+    Route::post('/profile/password', [AdminDashboardController::class, 'admin_password_update'])
+        ->name('admin.dashboard.password.update');
 });
 
 

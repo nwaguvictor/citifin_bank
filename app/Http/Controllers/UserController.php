@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -66,6 +67,14 @@ class UserController extends Controller
     public function user_profile() {
         $data['title'] = 'User Profile';
         return view('user-dashboard.user-profile', $data);
+    }
+
+     /**
+     * User Dashboard - Password Change
+     */
+    public function user_password_change() {
+        $data['title'] = 'Change Password';
+        return view('user-dashboard.password-change', $data);
     }
 
     // VIEWS END -------
@@ -187,6 +196,20 @@ class UserController extends Controller
             return redirect()->back()->with('fail', 'Error occured when updating profile');
         }
 
+    }
+
+    /**
+     * User Dashboard - Password Update
+     */
+    public function user_password_update(Request $request) {
+        if ($request->password != $request->password_confirm) {
+            return redirect()->back()->with('fail', 'Password does not match');
+        }
+
+        $user = User::where('id', $request->id)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('user.dashboard')->with('success', 'Password Updated successfully');
     }
 
     // Helper Methods
