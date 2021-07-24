@@ -31,6 +31,7 @@ Route::middleware('auth')->prefix('user/dashboard')->group(function() {
     Route::get('/deposit-money', [UserController::class, 'deposit_money'])->name('user.deposit_money');
     Route::post('/submit-deposit', [UserController::class, 'submit_deposit'])->name('user.deposit.submit');
     Route::get('/transfer-money', [UserController::class, 'transfer_money'])->name('user.transfer_money');
+    Route::post('/transfer', [UserController::class, 'submit_transfer'])->name('user.transfer.submit');
     Route::get('/request-withdrawal', [UserController::class, 'request_withdrawal'])->name('user.request_withdrawal');
     Route::post('/submit-withdrawal', [UserController::class, 'submit_withdrawal'])->name('user.withdrawal.submit');
     Route::get('/transaction-log', [UserController::class, 'transaction_log'])->name('user.transaction_log');

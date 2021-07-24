@@ -48,7 +48,9 @@ class UserController extends Controller
      */
     public function transaction_log() {
         $data['title'] = 'Transaction Log';
-        $data['transactions'] = Transaction::with('user')->latest('updated_at')->paginate(5);
+        $data['transactions'] = Transaction::where('user_id', Auth::id())->with('user')
+            ->latest('updated_at')->paginate(5);
+
         return view('user-dashboard.transaction-log', $data);
     }
 
@@ -107,6 +109,7 @@ class UserController extends Controller
 
         // Transaction Data
         $transactionData['account_number'] = $user->account_number;
+        $transactionData['account_name'] = $user->fullName;
         $transactionData['txnId'] = $txnId;
         $transactionData['type'] = 'Credit';
         $transactionData['amount'] = $request->amount;
@@ -119,6 +122,65 @@ class UserController extends Controller
         return redirect()->route('user.dashboard')->with('success', 'Submit was successful, waiting for confirmation');
 
     }
+
+    /**
+     * User Dashboard - submit transfer
+     * @param $request - Illuminate\Http\Request
+     */
+    public function submit_transfer(Request $request) {
+        $receiver = User::where('account_number', $request->account)->first();
+        $sender = User::where('id', Auth::id())->first();
+        $txnId = 'TRF/'. date('ymd') . '/' .Str::upper(Str::random(10));
+        $min = Config::get('minimum_transfer', 100);
+
+        if ($sender->balance < $request->amount) {
+            return redirect()->back()->with('fail', 'Insufficient balance to complete this transaction');
+        }
+
+        if ($min > $request->amount) {
+            return redirect()->back()->with('fail', "Minimum amount to transfer is equivalent of $$min");
+        }
+
+        // Check for valid user
+        if (!$receiver) {
+            return redirect()->back()->with('fail', 'Please provide a valid user account number');
+        }
+
+        // Compare user currency type
+        if ($receiver->account_type != $request->currency) {
+            return redirect()->back()
+                ->with('fail', "Receiver's account does not support currency type: $request->currency");
+        }
+
+        $receiverTxnData['account_name'] = $sender->fullName;
+        $receiverTxnData['account_number'] = $sender->account_number;
+        $receiverTxnData['txnId'] = $txnId;
+        $receiverTxnData['type'] = 'Credit';
+        $receiverTxnData['amount'] = $request->amount;
+        $receiverTxnData['currency'] = $request->currency;
+        $receiverTxnData['status'] = 'SUCCESSFUL';
+
+        $senderTxnData['account_name'] = $receiver->fullName;
+        $senderTxnData['account_number'] = $receiver->account_number;
+        $senderTxnData['txnId'] = $txnId;
+        $senderTxnData['type'] = 'Debit';
+        $senderTxnData['amount'] = $request->amount;
+        $senderTxnData['currency'] = $request->currency;
+        $senderTxnData['status'] = 'SUCCESSFUL';
+
+        DB::transaction(function () use ($receiver, $sender, $request, $receiverTxnData, $senderTxnData) {
+            $sender->balance -= $request->amount;
+            $sender->transactions()->create($senderTxnData);
+            $sender->save();
+
+            $receiver->balance += $request->amount;
+            $receiver->transactions()->create($receiverTxnData);
+            $receiver->save();
+        });
+
+        return redirect()->route('user.dashboard')->with('success', 'Transaction was successful');
+    }
+
     /**
      * User Dashboard - submit withrawal
      * @param $request App\Http\Requests\WithdrawalRequest
@@ -143,6 +205,7 @@ class UserController extends Controller
         $user->balance -= $request->amount;
 
         // Transaction Details
+        $transactionData['account_name'] = $request->account_name;
         $transactionData['account_number'] = $request->account_number;
         $transactionData['txnId'] = $txnId;
         $transactionData['type'] = 'Debit';

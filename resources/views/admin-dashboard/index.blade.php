@@ -24,7 +24,7 @@
                 @if ($users)
                     @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->fullName }}</td>
+                        <td>{{ Str::limit($user->fullName, 30, '...') }}</td>
                         <td>{{ $user->account_number }}</td>
                         <td>{{ $user->balance. ' ' .$user->account_type }}</td>
                         <td>[{{ $user->status }}]</td>

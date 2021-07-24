@@ -28,7 +28,7 @@
                 @foreach ($transactions as $transaction)
                 <tr>
                     <td>{{ $transaction->txnId }}</td>
-                    <td>{{ $transaction->user->fullName}}</td>
+                    <td>{{ $transaction->account_name}}</td>
                     <td>{{ $transaction->account_number }}</td>
                     <td>{{ $transaction->type }}</td>
                     <td>{{ $transaction->amount. ' ' .$transaction->currency }}</td>
