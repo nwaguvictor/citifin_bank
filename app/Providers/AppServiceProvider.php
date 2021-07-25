@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Config::set('minimum_deposit', 100);
         Config::set('minimum_transfer', 100);
 
+        // Comment this before running migrations
         $data['users'] = \App\Models\User::all();
         $data['transactions'] = \App\Models\Transaction::all();
         view()->share($data);
