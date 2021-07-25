@@ -26,7 +26,7 @@ Route::get('/about', [FrontendController::class, 'about_us'])->name('frontend.ab
 Route::get('/contact', [FrontendController::class, 'contact_us'])->name('frontend.contact');
 
 // USER DASHBOARD
-Route::middleware('auth')->prefix('user/dashboard')->group(function() {
+Route::middleware(['auth', 'verified'])->prefix('user/dashboard')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('/deposit-money', [UserController::class, 'deposit_money'])->name('user.deposit_money');
     Route::post('/submit-deposit', [UserController::class, 'submit_deposit'])->name('user.deposit.submit');
@@ -93,6 +93,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin/dashboard')->group(function(
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

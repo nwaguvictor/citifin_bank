@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('id_front')->nullable();
             $table->string('id_back')->nullable();
             $table->string('passport')->nullable();
-            $table->enum('status', ['ACTIVATED', 'DEACTIVATED', 'VERIFIED', 'UNVERIFIED'])->default('UNVERIFIED');
+            $table->enum('status', ['ACTIVATED', 'DEACTIVATED', 'INACTIVE'])->default('INACTIVE');
             $table->rememberToken();
             $table->timestamps();
         });

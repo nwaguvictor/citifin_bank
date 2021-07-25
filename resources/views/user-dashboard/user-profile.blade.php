@@ -23,12 +23,6 @@
                                 <i class="fa fa-info-circle fa-fw" title="info"></i>Account Approved!
                             </strong>Your account has been approved.
                         </div>
-                        @elseif (Auth::user()->status == 'UNVERIFIED')
-                        <div class="alert alert-warning" role="alert">
-                            <strong>
-                                <i class="fa fa-info-circle fa-fw" title="info"></i>Unverified Account!
-                            </strong>Please verify your email address.
-                        </div>
                         @elseif (Auth::user()->status == 'DEACTIVATED')
                         <div class="alert alert-danger" role="alert">
                             <strong>

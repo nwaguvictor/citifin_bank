@@ -9,6 +9,7 @@ use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminDashboardController extends Controller
 {
@@ -19,8 +20,8 @@ class AdminDashboardController extends Controller
     public function index() {
         $data['title'] = 'Dashboard';
         $data['users'] = User::latest('updated_at')->limit(5)->get();
-        $data['withdrawals'] = Withdrawal::with('user')->latest('updated_at')->limit(5)->get();
         $data['deposits'] = Deposit::with('user')->latest('updated_at')->limit(5)->get();
+        $data['withdrawals'] = Withdrawal::with('user')->latest('updated_at')->limit(5)->get();
         return view('admin-dashboard.index', $data);
     }
 
@@ -34,7 +35,13 @@ class AdminDashboardController extends Controller
     }
 
     public function activate_user(User $user) {
-        $user->update(['status' => 'ACTIVATED']);
+        if (!$user->account_number) {
+            $accountNumber = $this->accountNumberGenerator($user);
+            $user->update(['status' => 'ACTIVATED', 'account_number' => $accountNumber]);
+        }else {
+            $user->update(['status' => 'ACTIVATED']);
+        }
+
         return redirect()->back()->with('success', 'User has been activated');
     }
 
@@ -154,6 +161,13 @@ class AdminDashboardController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('admin.dashboard')->with('success', 'Password Updated successfully');
+    }
+
+    // Helper
+    private function accountNumberGenerator($user, $limit = 10) {
+        $randomNumber = rand(0000000, 9999999);
+        $accountNumber = date('ym') . $user->id . $randomNumber;
+        return Str::limit($accountNumber, $limit, null);
     }
 }
 

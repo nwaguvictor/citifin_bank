@@ -19,7 +19,7 @@
                     @if (Auth::user()->status != 'ACTIVATED')
                     <p style="margin-top: 10px">
                         <i class="fa fa-info-circle" title="info" style="color: rgb(204, 77, 77)"></i>
-                         <span style="color: rgb(175, 172, 172)">Account not activated. Contact customer support.</span>
+                         <span style="color: rgb(175, 172, 172)">Account not activated. Please update profile for activation.</span>
                     </p>
                     @endif
                 </div>
