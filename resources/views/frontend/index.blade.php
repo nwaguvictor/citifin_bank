@@ -40,7 +40,7 @@
                                             <button type="submit" class="cale-btn">Login</button>
                                         </form>
                                         <div class="terms-text">
-                                            <a href="">Forgot Password</a> |
+                                            <a href="{{ route('password.request') }}">Forgot Password</a> |
                                             <a href="{{ route('register') }}">Register</a>
                                         </div>
                                 </div>
